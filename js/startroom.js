@@ -10,6 +10,8 @@ y.addEventListener("click", function(event){
 });
 y.addEventListener("click", join);
 
+var savename;
+var saveroom;
 function error(bad){
 	bad.style.backgroundColor = "pink";
 	bad.style.borderColor = "red";
@@ -28,11 +30,13 @@ function create(){
 		error(nickname);
 	}else{
 		clean(nickname);
+		savename = nickname.value;
 	}
 	if(room.value == ""){
 		error(room);
 	}else{
 		clean(room);
+		saveroom = room.value;
 	}
 }
 function join(){
@@ -42,5 +46,6 @@ function join(){
 		error(nickname);
 	}else{
 		clean(nickname);
+		savename = nickname.value;
 	}
 }
