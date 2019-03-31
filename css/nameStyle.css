@@ -1,0 +1,34 @@
+body{
+	font-family: "Helvetica";
+	color: #222222;
+	/*background stuff */
+	background: url(../images/background1.png) no-repeat center;
+	height: 100%; 
+	width: 100%;
+	background-size: cover;
+}
+
+h1{
+	font-family: 'Satisfy', cursive;
+}
+
+.middleBlock{
+	margin-left: auto ;
+	margin-right: auto;
+	align-items: center;
+	width: 900px;
+}
+
+.vertical-center {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron{
+	margin-left: auto ;
+	margin-right: auto;
+	align-items: center;
+	width: 900px;
+}
