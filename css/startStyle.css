@@ -26,17 +26,11 @@
 	font-weight: bold;
 }
 .bg { 
-  /* The image used */
-	background-image:url(../images/bricks.jpg);
-
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	/*background stuff */
+	background: url(../images/background1.png) no-repeat center;
+	height: 100%; 
+	width: 100%;
+	background-size: cover;
 }
 .textlabel{
 	border: none;

@@ -1,6 +1,22 @@
 <?php
-
+	session_start();
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$username = trim($_POST["screenName"]);
+		if($username == ""){
+			$username = "Guest";
+		}
+		
+		if(!isset($_SESSION["name"])){
+			$_SESSION["name"] = "guest";
+		}else{
+			$_SESSION["name"] = $username;
+		}
+		
+		header("Location: startPage.php");
+	}
 ?>
+
 <html>
 	<head>
 		<title> Chat Room </title>
@@ -15,11 +31,11 @@
 				<div class="col-sm">
 					<h1 class="display-4 col-sm-5">TempChat</h1>
 				</div>
-				<form class="col-sm-7 row">
+				<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" class="col-sm-7 row">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Display Name">
+						<input type="text" class="form-control" placeholder="Display Name" name="screenName">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button">Enter</button>
+							<button class="btn btn-outline-secondary" type="submit">Enter</button>
 						</div>
 					</div>
 				</form>

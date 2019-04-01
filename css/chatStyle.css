@@ -2,11 +2,10 @@ body{
 	font-family: "Helvetica";
 	color: #222222;
 	/*background stuff */
-	background-image:url(../images/bricks.jpg);
+	/*background stuff */
+	background: url(../images/background1.png) no-repeat center;
 	height: 100%; 
 	width: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
 	background-size: cover;
 }
 

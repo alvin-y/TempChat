@@ -49,3 +49,7 @@ function join(){
 		savename = nickname.value;
 	}
 }
+
+function alertUser(message){
+	alert(message);
+}
