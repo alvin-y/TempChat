@@ -4,14 +4,10 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$username = trim($_POST["screenName"]);
 		if($username == ""){
-			$username = "Guest";
+			$username = "guest";
 		}
 		
-		if(!isset($_SESSION["name"])){
-			$_SESSION["name"] = "guest";
-		}else{
-			$_SESSION["name"] = $username;
-		}
+		$_SESSION["name"] = $username;
 		
 		header("Location: startPage.php");
 	}
@@ -19,7 +15,7 @@
 
 <html>
 	<head>
-		<title> Chat Room </title>
+		<title> TempChat </title>
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/nameStyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
