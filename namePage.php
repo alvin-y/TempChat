@@ -20,7 +20,7 @@
 <html>
 	<head>
 		<title> Chat Room </title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/nameStyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 		<meta charset="UTF-8">
@@ -28,7 +28,7 @@
 	<body>
 		<div class="vertical-center">
 			<div class="jumbotron row">
-				<div class="col-sm">
+				<div class="col-sm row">
 					<h1 class="display-4 col-sm-5">TempChat</h1>
 				</div>
 				<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" class="col-sm-7 row">
