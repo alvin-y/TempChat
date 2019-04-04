@@ -33,12 +33,6 @@ div.IDBar{
 	text-align: center;
 }
 
-.vertical-center {
-  min-height: 100vh;
-
-  display: flex;
-  align-items: center;
-}
 
 div.userList{
 	min-width: 150px;
