@@ -11,6 +11,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/chatStyle.css">
 		<link rel="stylesheet" href="css/startStyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
@@ -29,10 +30,16 @@
 			</div>
 			
 			<form id="chat" class="userChat" method = 'POST'>
-				<input type="text" class="textInput" id = "message"  name="message" value="" placeholder="Message" autofocus>
-				<input type="submit" class="submit" id="send"></input>
+				<div class="input-group">
+					<input type="text" class="form-control" id = "message"  name="message" value="" placeholder="Message" autofocus>
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-outline-secondary" id="send">Send</button>
+					</div>
+				</div>
 			</form>
-		
+			
+			<div class="row">
+			
 		</div>
 		
 		<div class ="userList">

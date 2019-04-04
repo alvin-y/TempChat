@@ -33,6 +33,13 @@ div.IDBar{
 	text-align: center;
 }
 
+.vertical-center {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
 div.userList{
 	min-width: 150px;
 	max-width: 150px;
@@ -55,8 +62,8 @@ label.UserLabel{
 div.chatBox{
 	min-height: 550px;
 	max-height: 550px;
-	min-width: 780px;
-	max-width: 780px;
+	min-width: 800px;
+	max-width: 800px;
 	margin: auto;
 	background-color: lightblue;
 	border-color: black;
@@ -65,24 +72,4 @@ div.chatBox{
 	padding-left: 10px;
 	padding-right: 10px;
 	word-break: break-all;
-}
-
-input.textInput{
-	border: none;
-	border-radius: 8px;
-	min-width: 700px;
-	max-width: 700px;
-	background-repeat: no-repeat;
-	background-position:right;
-	text-decoration: none;
-	font-size: 20px;
-	padding-left: 10px;
-	position: relative;
-	background-color: beige;
-	display: inline-block;
-}
-
-.sendButton{
-	width: 80px;
-	font-size:20px;
 }
