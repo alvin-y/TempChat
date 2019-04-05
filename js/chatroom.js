@@ -22,7 +22,7 @@ function sendMessage(){
 	for (var i = 0; i < cells.length; i++){
 		if(i%2 == 0){
 			cells[i].style.verticalAlign = "top";
-			cells[i].style.width = "175px";
+			cells[i].style.width = "100px";
 		}
 	}
 
