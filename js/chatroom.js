@@ -10,13 +10,22 @@ var countMessages = 0;
 
 function sendMessage(){
 	var user = document.getElementById("username").value;
-	var bold = document.createElement('strong');
-	var node = document.createTextNode(user + " : " +messageBox.value);
-	var newPara = document.createElement("p");
-	newPara.appendChild(node);
-	var chatBox = document.getElementById("chatBox");
 	
-	chatBox.appendChild(newPara);
+	var nameNode = document.createTextNode(user + " : ");
+	var table = document.getElementById("chat");
+	var row = table.insertRow(table.length);
+	var name = row.insertCell(0);
+	var msg = row.insertCell(1);
+	name.innerHTML = user + " :";
+	msg.innerHTML = messageBox.value;
+	var cells = document.getElementsByTagName("td");
+	for (var i = 0; i < cells.length; i++){
+		if(i%2 == 0){
+			cells[i].style.verticalAlign = "top";
+			cells[i].style.width = "175px";
+		}
+	}
+
 	chatBox.scrollTop = chatBox.scrollHeight;
 
 	messageBox.value = "";
