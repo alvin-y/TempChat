@@ -26,7 +26,9 @@
 			</div>
 
 			<div class="chatBox" id="chatBox" style="overflow-y:scroll;">
-
+					<table id="chat">
+						
+					</table>
 			</div>
 			
 			<form id="chat" class="userChat" method = 'POST'>
