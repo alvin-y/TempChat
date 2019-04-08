@@ -5,17 +5,22 @@ o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw
 
 var sendButton = document.getElementById("send");
 var messageBox = document.getElementById("message");
+var gifButton = document.getElementById("gifs");
 sendButton.addEventListener("click", function(event){
   event.preventDefault()
 });
+gifButton.addEventListener("click", function(event){
+  event.preventDefault()
+});
+
 
 sendButton.addEventListener("click", sendMessage);
+gifButton.addEventListener("click", gifs);
 
 var countMessages = 0;
 
 function sendMessage(){
 	var user = document.getElementById("username").value;
-	
 	var nameNode = document.createTextNode(user + " : ");
 	var table = document.getElementById("chat");
 	var row = table.insertRow(table.length);
@@ -36,18 +41,29 @@ function sendMessage(){
 			x++;
 		}
 	}
-	gifs();
 	chatBox.scrollTop = chatBox.scrollHeight;
 
 	messageBox.value = "";
 }
 function gifs(){
-	var message = "shrek";
-	var giphy = $.get("http://api.giphy.com/v1/gifs/search?q='"+ message +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=10");
+	var table = document.getElementById("chat");
+	var user = document.getElementById("username").value;
+	var row = table.insertRow(table.length);
+	var name = row.insertCell(0);
+	var msg = row.insertCell(1);
+	name.innerHTML = user + " :";
+	var gifsearch = document.getElementById("gifsearch").value;
+	
+	var random = Math.floor(Math.random() * 30);
+	var x = 0;
+	
+	var giphy = $.get("http://api.giphy.com/v1/gifs/search?q='"+ gifsearch +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=30");
 	giphy.done(function(response){console.log("DATA BOYS", response);
-		var gifs = response.data
+		var gifs = response.data;
 		for( i in gifs){
-			$('.userList').append("<img src='"+gifs[i].images.original.url+"'style='height:100px; width 100px;'/>")
+			if(x == random)
+				msg.innerHTML = "<img src='"+gifs[i].images.original.url+"'style='height:100px; width 100px;'/>";
+			x++;
 		}
 	});
 }
