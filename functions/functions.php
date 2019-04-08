@@ -1,9 +1,10 @@
 <?php
 	function getDB(){
 		// connect to the DB and returns a reference to the DB
-		$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+		$conn = mysqli_connect("localhost", "root", "", "tempchat");
 		if(!$conn){
 			die();
+			echo "db fail";
 		}
 		return $conn;
 	}

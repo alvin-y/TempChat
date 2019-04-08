@@ -1,10 +1,12 @@
 <?php
+	
 	session_start();
 	
 	if(!isset($_SESSION["name"])){
 		header("Location: namePage.php");
 	}
 	$user = $_SESSION["name"];
+	$userID = $_SESSION["userID"];
 	$roomID = $_SESSION["roomID"];
 ?>
 

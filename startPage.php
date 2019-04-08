@@ -1,6 +1,9 @@
 <?php
 	session_start();
 	
+	include 'functions/functions.php';
+	$conn = getDB();
+	
 	if(!isset($_SESSION["name"])){
 		header("Location: namePage.php");
 	}

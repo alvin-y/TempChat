@@ -1,13 +1,28 @@
 <?php
+	include 'functions/functions.php';
+	$conn = getDB();
+	
 	session_start();
 	
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$username = trim($_POST["screenName"]);
 		if($username == ""){
-			$username = "guest";
+			$username = "Guest";
 		}
 		
 		$_SESSION["name"] = $username;
+		
+		$statement = $conn->prepare('INSERT INTO users (name) VALUES (?)');
+		$statement->bind_param("s", $username);
+		$statement->execute();
+		
+		$statement = $conn->prepare('SELECT userID from users WHERE name=? ORDER BY userID desc limit 1');
+		$statement->bind_param("s", $username);
+		$statement->execute();
+		
+		$result = $statement->get_result();
+		$id = mysqli_fetch_assoc($result)["userID"];
+		$_SESSION["userID"] = $id;
 		
 		header("Location: startPage.php");
 	}
