@@ -56,9 +56,10 @@
 		
 		</div>
 		
-		<div class ="userList">
+		<div class ="userList" style="overflow-y:scroll;">
 		<h5>User List:</h5>
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/chatroom.js"></script>
 	</body>
 	
