@@ -19,10 +19,16 @@ function sendMessage(){
 	name.innerHTML = user + " :";
 	msg.innerHTML = messageBox.value;
 	var cells = document.getElementsByTagName("td");
-	for (var i = 0; i < cells.length; i++){
-		if(i%2 == 0){
-			cells[i].style.verticalAlign = "top";
-			cells[i].style.width = "100px";
+	var x = 0;
+	for (var i = 0; i < table.rows.length; i++){
+		for(var j = 0; j < table.rows[0].cells.length;j++){
+			if(j%2 == 0){//name
+				var length = table.rows[i].cells.item(j).innerHTML.length * 12;
+				console.log(length);
+				cells[x].style.verticalAlign = "top";
+				cells[x].style.width = length + "px";
+			}
+			x++;
 		}
 	}
 
