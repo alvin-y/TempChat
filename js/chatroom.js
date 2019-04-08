@@ -51,19 +51,24 @@ function gifs(){
 	var row = table.insertRow(table.length);
 	var name = row.insertCell(0);
 	var msg = row.insertCell(1);
-	name.innerHTML = user + " :";
 	var gifsearch = document.getElementById("gifsearch").value;
 	
 	var random = Math.floor(Math.random() * 30);
 	var x = 0;
 	
-	var giphy = $.get("http://api.giphy.com/v1/gifs/search?q='"+ gifsearch +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=30");
-	giphy.done(function(response){console.log("DATA BOYS", response);
-		var gifs = response.data;
-		for( i in gifs){
-			if(x == random)
-				msg.innerHTML = "<img src='"+gifs[i].images.original.url+"'style='height:100px; width 100px;'/>";
-			x++;
-		}
-	});
+	if(gifsearch.trim().length != 0){
+		name.innerHTML = user + " :";
+		var giphy = $.get("http://api.giphy.com/v1/gifs/search?q='"+ gifsearch +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=30");
+		giphy.done(function(response){console.log("DATA BOYS", response);
+			var gifs = response.data;
+			for( i in gifs){
+				if(x == random)
+					msg.innerHTML = "<img src='"+gifs[i].images.original.url+"'style='height:100px; width 100px;'/>";
+				x++;
+				chatBox.scrollTop = chatBox.scrollHeight;
+			}
+		});
+	}else{
+		alert("Search can not be blank or white spaces only!");
+	}
 }
