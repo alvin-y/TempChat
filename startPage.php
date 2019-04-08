@@ -7,20 +7,60 @@
 	if(!isset($_SESSION["name"])){
 		header("Location: namePage.php");
 	}
-	
+
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (isset($_POST['create'])) {
-			# create-button was clicked
+			//create-button was clicked
 			$id = mt_rand(0,10000);
+			
+			//check if room alread exists
+			$statement = $conn->prepare("SELECT id FROM rooms WHERE id = ?");
+			$statement->bind_param("i", $id);
+			$statement->execute();
+			$result = $statement->get_result();
+			//if room ID in use.
+			while(mysqli_num_rows($result) == 1) {
+				$id = mt_rand(0,10000);
+				$statement = $conn->prepare("SELECT id FROM rooms WHERE id = ?");
+				$statement->bind_param("i", $id);
+				$statement->execute();
+				$result = $statement->get_result();
+			}
+			//hash the password and insert info into room
+			$newPass = password_hash(trim($_POST["roomPassMake"]), PASSWORD_DEFAULT);
+			$statement = $conn->prepare('INSERT INTO rooms (id, roomPass) VALUES (?, ?)');
+			$statement->bind_param("is", $id, $newPass);
+			$statement->execute();
+			
+			$_SESSION["roomID"] = $id;
+		
+			header("Location: chatPage.php");
 		}
 		elseif (isset($_POST['join'])) {
 			# join-button was clicked
 			$id = $_POST["roomID"];
+			$statement = $conn->prepare("SELECT id FROM rooms WHERE id = ?");
+			$statement->bind_param("i", $id);
+			$statement->execute();
+			$result = $statement->get_result();
+			if(mysqli_num_rows($result) == 0){ //room doesn't exist
+				echo '<script type="text/javascript"> alert("This room does not exist"); </script>';
+			} else { //check password
+				$id = $_POST["roomID"];
+				$roomPass = $_POST["roomPassJoin"];
+				$statement = $conn->prepare("SELECT roomPass FROM rooms WHERE id = ?");
+				$statement->bind_param("i", $id);
+				$statement->execute();
+				$result = $statement->get_result();
+				$passCheck = mysqli_fetch_assoc($result)["roomPass"];
+				if(password_verify($roomPass, $passCheck)){ //if password matches
+					$_SESSION["roomID"] = $id;
+					header("Location: chatPage.php");
+				} else { //wrong password
+					echo '<script type="text/javascript"> alert("Invalid Password"); </script>';
+				}
+			}
 		}
-		
-		$_SESSION["roomID"] = $id;
-		
-		header("Location: chatPage.php");
 	}
 ?>
 
@@ -57,5 +97,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>
