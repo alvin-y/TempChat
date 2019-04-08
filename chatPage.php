@@ -33,6 +33,8 @@
 				  <button class="btn"><span class="oi oi-data-transfer-download"></span></button>
 				  <button class="btn"><span class="oi oi-monitor"></span></button>
 				  <button class="btn"><span class="oi oi-x"></span></button>
+				  <button type="submit" id="gifs" class="btn"><span class="oi oi-image"></span></button>
+				  <input type="text" id="gifsearch" name="giphyboy" value="" placeholder="<- Type anything and press image button" style="width:300px;">
 				</div>
 			  </div>
 			</nav>
