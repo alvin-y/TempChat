@@ -7,9 +7,9 @@ $conn = getDB();
 
 session_start();
 
-$ roomID = $_SESSION["roomID"];
-$ userID = $_SESSION["userID"];
-$ msg = $_POST["msg"];
+$roomID = $_SESSION["roomID"];
+$userID = $_SESSION["userID"];
+$msg = $_POST["msg"];
 
 
 
