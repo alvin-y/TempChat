@@ -5,6 +5,9 @@ o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw
 var sendButton = document.getElementById("send");
 var messageBox = document.getElementById("message");
 var gifButton = document.getElementById("gifs");
+var dlButton = document.getElementById("download");
+var clrButton = document.getElementById("clear");
+var disbandButton = document.getElementById("disband");
 sendButton.addEventListener("click", function(event){
   event.preventDefault()
 });
@@ -15,6 +18,10 @@ gifButton.addEventListener("click", function(event){
 
 sendButton.addEventListener("click", sendMessage);
 gifButton.addEventListener("click", gifs);
+dlButton.addEventListener("click", downloadChat);
+clrButton.addEventListener("click", clearChat);
+disbandButton.addEventListener("click", disbandChat);
+
 
 var countMessages = 0;
 
@@ -96,6 +103,25 @@ function gifs(){
 		alert("Search can not be blank or white spaces only!");
 	}
 	  
+}
+
+function downloadChat(){
+	 
+	alert("guip");
+}
+function clearChat(){
+	$("#chat tr").remove(); 
+}
+function disbandChat(){
+	$.ajax({
+	   url:"resetChat.php",
+	   method:"POST",
+	   success:function(data)
+	   {
+		   alert("Room has been DESTROYED");
+	   }
+	  });
+	  location.reload();
 }
 
 setInterval(function(){ 
