@@ -155,8 +155,7 @@ function clearChat(){
 	   url:"clearChat.php",
 	   method:"POST",
 	   success:function(data)
-	   {
-			
+	   {	
 			location.reload();
 	   }
 	  });
