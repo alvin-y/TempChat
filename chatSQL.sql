@@ -49,8 +49,7 @@ CREATE TABLE `RoomLogs` (
   `roomID` INTEGER NOT NULL, 
   `senderID` int(11) NOT NULL, 
   `msgID` int(11) NOT NULL, 
-  `msg` text NOT NULL, 
-  PRIMARY KEY (`roomID`)
+  `msg` text NOT NULL
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
@@ -64,8 +63,7 @@ DROP TABLE IF EXISTS `RoomUsers`;
 
 CREATE TABLE `RoomUsers` (
   `roomID` INTEGER NOT NULL, 
-  `userID` INTEGER NOT NULL, 
-  PRIMARY KEY (`roomID`) 
+  `userID` INTEGER NOT NULL 
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
