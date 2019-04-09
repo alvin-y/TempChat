@@ -34,10 +34,10 @@
 			  <h2 id="roomID">Room ID: <?php echo $roomID ?></h2>
 			  <div class="collapse navbar-collapse">
 				<div class="navbar-nav">
-				  <button class="btn"><span class="oi oi-data-transfer-download"></span></button>
-				  <button class="btn"><span class="oi oi-monitor"></span></button>
-				  <button class="btn"><span class="oi oi-x"></span></button>
-				  <button type="submit" id="gifs" class="btn"><span class="oi oi-image"></span></button>
+				  <button class="btn" id="download" title="Download Chat"><span class="oi oi-data-transfer-download"></span></button>
+				  <button class="btn" id="clear" title="Clear Chat"><span class="oi oi-monitor"></span></button>
+				  <button class="btn" id="disband" title="Destroy Room"><span class="oi oi-x"></span></button>
+				  <button type="submit" id="gifs" class="btn" title="Giphy"><span class="oi oi-image"></span></button>
 				  <input type="text" id="gifsearch" name="giphyboy" value="" placeholder="<- Type anything and press image button" style="width:300px;">
 				</div>
 			  </div>
