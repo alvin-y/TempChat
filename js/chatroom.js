@@ -106,8 +106,49 @@ function gifs(){
 }
 
 function downloadChat(){
-	 
-	alert("guip");
+	var roomID = document.getElementById("roomID").value;
+	var username = document.getElementById("username").value;
+	$.get("getNewChat.php", function(data){
+		console.log("Download");
+		var chatLog = $.parseJSON(data);
+		var numMsgs = chatLog.length;
+		//console.log(numMsgs);
+		textDL = ""; //make string to put in text file
+		for(var i = 0; i < numMsgs; i++){
+			textDL += (chatLog[i][1] + ": " + chatLog[i][0] + '\n');
+		}
+		 var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textDL));
+		element.setAttribute('download', "ChatLog#"+roomID);
+
+		element.style.display = 'none';
+		document.body.appendChild(element);
+
+		element.click();
+
+		document.body.removeChild(element);
+	})
+		.done(function(){
+			console.log("Lists done");
+		})
+		.fail(function(){
+			die();
+			console.log("fail");
+		})
+		.always(function(){
+			console.log("done");
+		});
+	var isGif = 0;
+	var msg=username+" has tried to download the chat logs";
+	
+	$.ajax({
+	   url:"send_chat.php",
+	   method:"POST",
+	   data:{msg:msg, isGif:isGif},
+	   success:function(data)
+	   {
+	   }
+	});
 }
 function clearChat(){
 	$("#chat tr").remove(); 
@@ -125,7 +166,7 @@ function disbandChat(){
 }
 
 setInterval(function(){ 
-	getNewChat()
+	getNewChat();
 }, 1500);
 
 function getNewChat(){
