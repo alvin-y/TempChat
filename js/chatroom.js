@@ -69,7 +69,7 @@ function gifs(){
 	
 	if(gifsearch.trim().length != 0){
 		name.innerHTML = user + " :";
-		var giphy = $.get("http://api.giphy.com/v1/gifs/search?q='"+ gifsearch +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=30");
+		var giphy = $.get("https://api.giphy.com/v1/gifs/search?q='"+ gifsearch +"'&api_key=o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw&limit=30");
 		giphy.done(function(response){console.log("DATA BOYS", response);
 			var gifs = response.data;
 			for( i in gifs){
