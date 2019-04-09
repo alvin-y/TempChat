@@ -50,6 +50,7 @@ CREATE TABLE `RoomLogs` (
   `senderID` int(11) NOT NULL, 
   `msgID` int(11) NOT NULL AUTO_INCREMENT, 
   `msg` text NOT NULL,
+  `isGif` boolean NOT NULL,
   PRIMARY KEY(`msgID`),
   FOREIGN KEY (roomID) REFERENCES rooms(id),
   FOREIGN KEY (senderID) REFERENCES users(userID)
@@ -72,3 +73,6 @@ CREATE TABLE `RoomUsers` (
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
+
+
+
