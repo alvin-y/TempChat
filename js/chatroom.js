@@ -44,6 +44,7 @@ function sendMessage(){
 	chatBox.scrollTop = chatBox.scrollHeight;
 
 	messageBox.value = "";
+
 }
 function gifs(){
 	var table = document.getElementById("chat");
