@@ -1,6 +1,5 @@
 /*
 o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw
-
 */
 
 var sendButton = document.getElementById("send");
@@ -44,6 +43,7 @@ function sendMessage(){
 	chatBox.scrollTop = chatBox.scrollHeight;
 	var msg= messageBox.value;
 	messageBox.value = "";
+	countMessages++;
 	var isGif = 0;
 	$.ajax({
 	   url:"send_chat.php",
@@ -54,6 +54,8 @@ function sendMessage(){
 	   }
 	  });
 }
+
+
 function gifs(){
 	var table = document.getElementById("chat");
 	var user = document.getElementById("username").value;
@@ -89,16 +91,66 @@ function gifs(){
 				chatBox.scrollTop = chatBox.scrollHeight;
 			}
 		});
+		countMessages++;
 	}else{
 		alert("Search can not be blank or white spaces only!");
 	}
 	  
 }
 
-setInterval(function(){ alert("Hello"); 
-
-
-
-
-
+setInterval(function(){ 
+	getNewChat()
 }, 1500);
+
+function getNewChat(){
+	$.get("getNewChat.php", function(data){
+		console.log("Get New Chat");
+		var chatLog = $.parseJSON(data);
+		var numMsgs = chatLog.length;
+		console.log(numMsgs);
+		
+		while (numMsgs > countMessages){
+			var user = chatLog[countMessages][1];
+			var nameNode = document.createTextNode(user + " : ");
+			var table = document.getElementById("chat");
+			var row = table.insertRow(table.length);
+			var name = row.insertCell(0);
+			var chatmsg = row.insertCell(1);
+			name.innerHTML = user + " :";
+			
+			if(chatLog[countMessages][2] == 0){
+				chatmsg.innerHTML = chatLog[countMessages][0];
+			} else{
+				chatmsg.innerHTML = "<img src='"+chatLog[countMessages][0]+"'style='height:100px; width 100px;'/>";
+			}
+			
+			var cells = document.getElementsByTagName("td");
+			var x = 0;
+			
+			
+			for (var i = 0; i < table.rows.length; i++){
+				for(var j = 0; j < table.rows[0].cells.length;j++){
+					if(j%2 == 0){//name
+						var length = table.rows[i].cells.item(j).innerHTML.length * 12;
+						cells[x].style.verticalAlign = "top";
+						cells[x].style.width = length + "px";
+					}
+				x++;
+				}
+			}
+			chatBox.scrollTop = chatBox.scrollHeight;
+			countMessages++;
+		}	
+	})
+		.done(function(){
+			console.log("Lists done");
+		})
+		.fail(function(){
+			die();
+			console.log("fail");
+		})
+		.always(function(){
+			console.log("done");
+		});
+
+}

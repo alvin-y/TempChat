@@ -12,7 +12,7 @@ $roomID = $_SESSION["roomID"];
 
 $statement = $conn->prepare("SELECT  rl.msg, rl.isGif, u.name FROM roomlogs AS rl 
 JOIN users AS u ON rl.senderID = u.userID 
-WHERE ? = rl.roomID SORT BY rl.msgID ASC");
+WHERE ? = rl.roomID ORDER BY rl.msgID ASC");
 $statement->bind_param("i", $roomID);
 $statement->execute();
 $result = $statement->get_result();
