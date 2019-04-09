@@ -1,13 +1,12 @@
 <?php
 
-//send_chat.php
-
+//getNewChat.php
+//Connects to database and grabs all the msgs in roomID and sends it back as json
 include 'functions/functions.php';
 $conn = getDB();
 
 session_start();
 
-$dbcon = getDB();
 $roomID = $_SESSION["roomID"];
 
 $statement = $conn->prepare("SELECT  rl.msg, rl.isGif, u.name FROM roomlogs AS rl 
