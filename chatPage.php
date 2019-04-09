@@ -11,14 +11,6 @@
 	$userID = $_SESSION["userID"];
 	$roomID = $_SESSION["roomID"];
 	
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		$message = $_POST["message"];
-
-		$statement = $conn->prepare('INSERT INTO roomlogs (roomID,senderID,msg) VALUES (?,?,?)');
-		$statement->bind_param("iis", $roomID, $userID, $message);
-		$statement->execute();
-
-	}
 ?>
 
 <html>

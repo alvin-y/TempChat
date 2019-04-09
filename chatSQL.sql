@@ -48,11 +48,9 @@ DROP TABLE IF EXISTS `RoomLogs`;
 CREATE TABLE `RoomLogs` (
   `roomID` INTEGER NOT NULL, 
   `senderID` int(11) NOT NULL, 
-  `msgID` int(11) NOT NULL AUTO_INCREMENT, 
-  `msg` text NOT NULL,
-  PRIMARY KEY(`msgID`),
-  FOREIGN KEY (roomID) REFERENCES rooms(id),
-  FOREIGN KEY (senderID) REFERENCES users(userID)
+  `msgID` int(11) NOT NULL, 
+  `msg` text NOT NULL, 
+  PRIMARY KEY (`roomID`)
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
@@ -66,9 +64,8 @@ DROP TABLE IF EXISTS `RoomUsers`;
 
 CREATE TABLE `RoomUsers` (
   `roomID` INTEGER NOT NULL, 
-  `userID` INTEGER NOT NULL,
-  FOREIGN KEY (roomID) REFERENCES rooms(id),
-  FOREIGN KEY (userID) REFERENCES users(userID)
+  `userID` INTEGER NOT NULL, 
+  PRIMARY KEY (`roomID`) 
 ) ENGINE=innodb DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
