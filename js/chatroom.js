@@ -6,7 +6,9 @@ o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw
 var sendButton = document.getElementById("send");
 var messageBox = document.getElementById("message");
 var gifButton = document.getElementById("gifs");
-
+sendButton.addEventListener("click", function(event){
+  event.preventDefault()
+});
 gifButton.addEventListener("click", function(event){
   event.preventDefault()
 });
@@ -23,9 +25,9 @@ function sendMessage(){
 	var table = document.getElementById("chat");
 	var row = table.insertRow(table.length);
 	var name = row.insertCell(0);
-	var msg = row.insertCell(1);
+	var chatmsg = row.insertCell(1);
 	name.innerHTML = user + " :";
-	msg.innerHTML = messageBox.value;
+	chatmsg.innerHTML = messageBox.value;
 	var cells = document.getElementsByTagName("td");
 	var x = 0;
 	
@@ -40,7 +42,17 @@ function sendMessage(){
 		}
 	}
 	chatBox.scrollTop = chatBox.scrollHeight;
-	//messageBox.value = "";
+	var msg= messageBox.value;
+	messageBox.value = "";
+	$.ajax({
+	   url:"send_chat.php",
+	   method:"POST",
+	   data:{msg:msg},
+	   success:function(data)
+	   {
+		   alert("guip");
+	   }
+	  });
 }
 function gifs(){
 	var table = document.getElementById("chat");
