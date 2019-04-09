@@ -70,7 +70,6 @@
 					$statement->bind_param("ii", $id, $userID);
 					$statement->execute();
 					$result = $statement->get_result();	
-					echo mysqli_fetch_assoc($result)["userID"];
 					if(mysqli_num_rows($result) == 0){ //not already in room
 						$statement = $conn->prepare('INSERT INTO roomusers (roomID, userID) VALUES (?, ?)');
 						$statement->bind_param("ii", $id, $userID);
