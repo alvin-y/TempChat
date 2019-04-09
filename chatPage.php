@@ -8,6 +8,15 @@
 	$user = $_SESSION["name"];
 	$userID = $_SESSION["userID"];
 	$roomID = $_SESSION["roomID"];
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$message = $_POST['message'].value;
+
+		$statement = $conn->prepare('INSERT INTO roomlogs (roomID,senderID,msg) VALUES (?,?,?)');
+		$statement->bind_param("iis", $roomID, $userID, $message);
+		$statement->execute();
+
+	}
 ?>
 
 <html>
@@ -47,7 +56,7 @@
 			</div>
 
 			<!--MESSAGE BOX--->			
-			<form id="chat" class="userChat" method = 'POST'>
+			<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" id="chat" class="userChat" method = 'POST'>
 				<div class="input-group">
 					<input type="text" class="form-control" id = "message"  name="message" value="" placeholder="Message" autofocus>
 					<div class="input-group-append">
