@@ -151,7 +151,15 @@ function downloadChat(){
 	});
 }
 function clearChat(){
-	$("#chat tr").remove(); 
+			$.ajax({
+	   url:"clearChat.php",
+	   method:"POST",
+	   success:function(data)
+	   {
+			
+			location.reload();
+	   }
+	  });
 }
 function disbandChat(){
 	$.ajax({
@@ -159,23 +167,55 @@ function disbandChat(){
 	   method:"POST",
 	   success:function(data)
 	   {
-		   alert("Room has been DESTROYED");
+			alert("Room has been DESTROYED");
+			location.reload();
 	   }
 	  });
-	  location.reload();
 }
 
 setInterval(function(){ 
+	getRoomStatus();
 	getNewChat();
 }, 1500);
+
+function getRoomStatus(){
+	$.get("roomStatus.php", function(data){
+		var roomLog = $.parseJSON(data);
+		console.log(roomLog.length);
+		if(roomLog.length == 0){
+			$.ajax({
+			   url:"deleteUser.php",
+			   method:"POST",
+			   success:function(data)
+			   {
+					alert("Room has been DESTROYED");
+					location.reload();
+			   }
+			});
+		}
+	})
+	.done(function(){
+		console.log("Lists done");
+	})
+	.fail(function(){
+		die();
+		console.log("fail");
+	})
+	.always(function(){
+		console.log("done");
+	});
+
+}
 
 function getNewChat(){
 	$.get("getNewChat.php", function(data){
 		console.log("Get New Chat");
 		var chatLog = $.parseJSON(data);
 		var numMsgs = chatLog.length;
-		console.log(numMsgs);
-		
+		if(numMsgs == 0){
+		$("#chat tr").remove();
+			countMessages = 0;
+		}
 		while (numMsgs > countMessages){
 			var user = chatLog[countMessages][1];
 			var nameNode = document.createTextNode(user + " : ");
