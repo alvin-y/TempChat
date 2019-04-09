@@ -27,6 +27,7 @@
 
 	<body>
 	<?php echo "<input type='hidden' id='username' value='$user' />"; ?>
+	<?php echo "<input type='hidden' id='roomID' value='$roomID' />"; ?>
 		<br>
 		<div class="mainBox">
 			<!--ID BOX--->
