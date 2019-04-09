@@ -10,9 +10,13 @@ session_start();
 $roomID = $_SESSION["roomID"];
 $userID = $_SESSION["userID"];
 $msg = $_POST["msg"];
+$isGif = $_POST["isGif"];
 
-$statement = $conn->prepare('INSERT INTO roomlogs (roomID,senderID,msg) VALUES (?,?,?)');
-$statement->bind_param("iis", $roomID, $userID, $msg);
+$statement = $conn->prepare('INSERT INTO roomlogs (roomID,senderID,msg,isGif) VALUES (?,?,?,?)');
+$statement->bind_param("iisi", $roomID, $userID, $msg, $isGif);
 $statement->execute();
+
+
+
 
 ?>
