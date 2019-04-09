@@ -6,9 +6,7 @@ o0BuF2zglZQPmlqRCR6RB2vGqGY5t3Dw
 var sendButton = document.getElementById("send");
 var messageBox = document.getElementById("message");
 var gifButton = document.getElementById("gifs");
-sendButton.addEventListener("click", function(event){
-  event.preventDefault()
-});
+
 gifButton.addEventListener("click", function(event){
   event.preventDefault()
 });
@@ -42,9 +40,7 @@ function sendMessage(){
 		}
 	}
 	chatBox.scrollTop = chatBox.scrollHeight;
-
-	messageBox.value = "";
-
+	//messageBox.value = "";
 }
 function gifs(){
 	var table = document.getElementById("chat");
