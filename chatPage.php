@@ -57,7 +57,7 @@
 				</table>
 			</div>
 
-			<!--MESSAGE BOX--->			
+			<!--MESSAGE BOX--->	
 			<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" id="chat" class="userChat" method = "POST">
 				<div class="input-group">
 					<input type="text" class="form-control" id = "message"  name="message" value="" placeholder="Message" autofocus>
