@@ -54,6 +54,5 @@
 				</form>
 			</div>
 		</div>
-		<script src="js/startroom.js"></script>
 	</body>
 </html>
