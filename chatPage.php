@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="css/startStyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<title> TempChat | Room: <?php echo $roomID ?> </title>
 	</head>
 
@@ -65,7 +66,6 @@
 		<div class ="userList" style="overflow-y:scroll;">
 		<h5>User List:</h5>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/chatroom.js"></script>
 	</body>
 	
