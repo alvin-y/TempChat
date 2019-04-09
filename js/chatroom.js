@@ -44,13 +44,13 @@ function sendMessage(){
 	chatBox.scrollTop = chatBox.scrollHeight;
 	var msg= messageBox.value;
 	messageBox.value = "";
+	var isGif = 0;
 	$.ajax({
 	   url:"send_chat.php",
 	   method:"POST",
-	   data:{msg:msg},
+	   data:{msg:msg, isGif:isGif},
 	   success:function(data)
 	   {
-		   alert("guip");
 	   }
 	  });
 }
@@ -71,8 +71,20 @@ function gifs(){
 		giphy.done(function(response){console.log("DATA BOYS", response);
 			var gifs = response.data;
 			for( i in gifs){
-				if(x == random)
+				if(x == random){
 					msg.innerHTML = "<img src='"+gifs[i].images.original.url+"'style='height:100px; width 100px;'/>";
+					msg = gifs[i].images.original.url;
+					var isGif = 1;
+					$.ajax({
+				   url:"send_chat.php",
+				   method:"POST",
+				   data:{msg:msg, isGif:isGif},
+				   success:function(data)
+				   {
+				   }
+				  });
+				
+				}
 				x++;
 				chatBox.scrollTop = chatBox.scrollHeight;
 			}
@@ -80,4 +92,13 @@ function gifs(){
 	}else{
 		alert("Search can not be blank or white spaces only!");
 	}
+	  
 }
+
+setInterval(function(){ alert("Hello"); 
+
+
+
+
+
+}, 1500);
