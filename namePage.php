@@ -12,10 +12,12 @@
 		
 		$_SESSION["name"] = $username;
 		
+		//put name into db
 		$statement = $conn->prepare('INSERT INTO users (name) VALUES (?)');
 		$statement->bind_param("s", $username);
 		$statement->execute();
 		
+		//get the new id
 		$statement = $conn->prepare('SELECT userID from users WHERE name=? ORDER BY userID desc limit 1');
 		$statement->bind_param("s", $username);
 		$statement->execute();
@@ -52,5 +54,6 @@
 				</form>
 			</div>
 		</div>
+		<script src="js/startroom.js"></script>
 	</body>
 </html>
