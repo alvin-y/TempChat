@@ -16,7 +16,7 @@ $result = $statement->get_result();
 
 $a = [];
 while($row = mysqli_fetch_assoc($result)){
-	$a[] = array(utf8_encode($row["id"]));
+	$a[] = utf8_encode($row["id"]);
 }
 
 echo json_encode($a);

@@ -1,7 +1,7 @@
 <?php
 
-//getNewChat.php
-//Connects to database and grabs all the msgs in roomID and sends it back as json
+//send_chat.php
+
 include 'functions/functions.php';
 $conn = getDB();
 
