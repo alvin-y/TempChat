@@ -24,6 +24,7 @@ disbandButton.addEventListener("click", disbandChat);
 
 
 var countMessages = 0;
+var countUsers = 0;
 
 function sendMessage(){
 	var user = document.getElementById("username").value;
@@ -151,11 +152,12 @@ function downloadChat(){
 	});
 }
 function clearChat(){
-			$.ajax({
+	$.ajax({
 	   url:"clearChat.php",
 	   method:"POST",
 	   success:function(data)
-	   {	
+	   {
+			
 			location.reload();
 	   }
 	  });
@@ -175,7 +177,36 @@ function disbandChat(){
 setInterval(function(){ 
 	getRoomStatus();
 	getNewChat();
+	getUserList();
 }, 1500);
+
+function getUserList(){
+	$.get("getUsers.php", function(data){
+		var users = $.parseJSON(data);
+		var userList = document.getElementById("userList");
+		while(countUsers < users.length){
+			newUser = users[countUsers];
+			var node = document.createElement("p");
+			var nameNode = document.createTextNode(users[countUsers]);
+			node.appendChild(nameNode);
+			userList.appendChild(node);
+			countUsers++;
+		}
+
+	})
+	.done(function(){
+		console.log("names done");
+	})
+	.fail(function(){
+		die();
+		console.log("fail");
+	})
+	.always(function(){
+		console.log("done");
+	});
+
+	
+}
 
 function getRoomStatus(){
 	$.get("roomStatus.php", function(data){
@@ -194,7 +225,7 @@ function getRoomStatus(){
 		}
 	})
 	.done(function(){
-		console.log("Lists done");
+		console.log("status done");
 	})
 	.fail(function(){
 		die();
@@ -249,7 +280,7 @@ function getNewChat(){
 		}	
 	})
 		.done(function(){
-			console.log("Lists done");
+			console.log("chat done");
 		})
 		.fail(function(){
 			die();
